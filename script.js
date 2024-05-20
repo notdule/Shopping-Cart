@@ -107,8 +107,8 @@ class ShoppingCart {
     this.total = 0;
     this.taxRate = 8.25;
   }
-
-addItem(id, products) {
+  
+  addItem(id, products) {
     const product = products.find((item) => item.id === id);
     const { name, price } = product;
     this.items.push(product);
@@ -119,6 +119,14 @@ addItem(id, products) {
     })
 
     const currentProductCount = totalCountPerProduct[product.id];
+    const currentProductCountSpan = document.getElementById(`product-count-for-id${id}`);
 
+    currentProductCount > 1 
+      ? currentProductCountSpan.textContent = `${currentProductCount}x`
+      : productsContainer.innerHTML += `
+      <div id="dessert${id}" class="product">
+
+      </div>
+      `;
   }
 };
