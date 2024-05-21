@@ -107,7 +107,7 @@ class ShoppingCart {
     this.total = 0;
     this.taxRate = 8.25;
   }
-  
+
   addItem(id, products) {
     const product = products.find((item) => item.id === id);
     const { name, price } = product;
@@ -125,8 +125,14 @@ class ShoppingCart {
       ? currentProductCountSpan.textContent = `${currentProductCount}x`
       : productsContainer.innerHTML += `
       <div id="dessert${id}" class="product">
-
+        <p>
+          <span class="product-count" id="product-count-for-id${id}"></span>${name}
+        </p>
+        <p>${price}</p>
       </div>
       `;
   }
 };
+
+const cart = new ShoppingCart();
+const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
