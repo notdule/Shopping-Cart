@@ -132,6 +132,10 @@ class ShoppingCart {
       </div>
       `;
   }
+
+  getCounts() {
+    return this.items.length;
+  }
 };
 
 const cart = new ShoppingCart();
@@ -141,10 +145,13 @@ const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
   (btn) => {
     btn.addEventListener("click", (event) => {
       cart.addItem(Number(event.target.id), products);
+
     })
   }
 );
 
 cartBtn.addEventListener("click", () => {
-
+  isCartShowing = !isCartShowing;
+  showHideCartSpan.textContent = isCartShowing ? "Hide" : "Show";
+  cartContainer.style.display = isCartShowing ? "block" : "none";
 });
