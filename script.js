@@ -137,7 +137,7 @@ class ShoppingCart {
     return this.items.length;
   }
 
-clearCart() {
+  clearCart() {
     if (!this.items.length) {
       alert("Your shopping cart is already empty");
       return;
@@ -147,10 +147,18 @@ clearCart() {
       "Are you sure you want to clear all items from your shopping cart?"
     );
 
-
+    if (isCartCleared) {
+      this.items = [];
+      this.total = 0;
+      productsContainer.innerHTML = "";
+      totalNumberOfItems.textContent = 0;
+      cartSubTotal.textContent = 0;
+      cartTaxes.textContent = 0;
+      cartTotal.textContent = 0;
+    }
   }
 
-calculateTaxes(amount) {
+  calculateTaxes(amount) {
     return parseFloat(((this.taxRate / 100) * amount).toFixed(2));
   }
 
@@ -183,3 +191,5 @@ cartBtn.addEventListener("click", () => {
   showHideCartSpan.textContent = isCartShowing ? "Hide" : "Show";
   cartContainer.style.display = isCartShowing ? "block" : "none";
 });
+
+clearCartBtn.addEventListener("click", cart.clearCart.bind(cart));
